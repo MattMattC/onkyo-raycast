@@ -1,1 +1,3 @@
-# onkyo-raycast
+# Onkyo Control
+
+Control onkyo from network
