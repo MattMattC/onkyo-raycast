@@ -1,7 +1,7 @@
 import { ActionPanel, Action, List, showToast, Toast, Grid } from "@raycast/api";
 import OnkyoEiscp from "./onkyo-eiscp";
 import { IP_ONKYO } from "./constants";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 interface CommandItem {
   title: string;
@@ -9,20 +9,40 @@ interface CommandItem {
 }
 let mounted = false;
 
+const receiver = new OnkyoEiscp(IP_ONKYO);
+
 export default function Command() {
-  const receiver = new OnkyoEiscp(IP_ONKYO);
   let currentVolume = 0;
+
+  const [isPowerOnState, setIsPowerOnState] = useState(false);
 
   useEffect(() => {
     if (!mounted) {
       mounted = true;
 
-      console.log("=> useEffect");
-      const isConnected = receiver.isConnected();
-      console.log("=> ", isConnected);
-      receiver.getVolume().then((response) => {
-        console.log("=> ", response);
-      });
+      const connect = async () => {
+        await receiver.connect();
+        try {
+          const isPowerOn = await receiver.isPowerOn();
+          console.log("=> isPowerOn", isPowerOn);
+          setIsPowerOnState(isPowerOn);
+          showToast({
+            title: "État",
+            message: isPowerOn ? "Allumé" : "Éteint",
+            style: Toast.Style.Success,
+          });
+        } catch (error) {
+          showToast({
+            title: "Erreur",
+            message: "Éteint",
+            style: Toast.Style.Failure,
+          });
+        }
+        // await receiver.getVolume();
+      };
+
+      connect();
+      console.log("=> lq");
     }
 
     return () => {};
@@ -63,15 +83,16 @@ export default function Command() {
 
   const handleAction = async (command: () => void) => {
     try {
-      await receiver.connect();
-      command();
+      // await receiver.connect();
+      // console.log("=> connecté");
+      await command();
 
       showToast({
         title: "Commande envoyée",
         style: Toast.Style.Success,
       });
 
-      setTimeout(() => receiver.disconnect(), 5000);
+      // setTimeout(() => receiver.disconnect(), 5000);
     } catch (error) {
       console.error("Erreur:", error);
       showToast({
@@ -81,22 +102,25 @@ export default function Command() {
       });
     }
   };
+  console.log("=> yolo");
 
   return (
-    <Grid>
-      {commands.map((item, index) => (
-        <Grid
-          key={index}
-          title={item.title}
-          subtitle={item.title.includes("Volume") ? `Volume actuel: ${currentVolume}%` : ""}
-          content={item.title}
-          actions={
-            <ActionPanel>
-              <Action title={item.title} onAction={() => handleAction(item.command)} />
-            </ActionPanel>
-          }
-        />
-      ))}
-    </Grid>
+    <>
+      <Grid>
+        {commands.map((item, index) => (
+          <Grid.Item
+            key={index}
+            title={item.title}
+            subtitle={item.title.includes("Volume") ? `Volume actuel: ${currentVolume}%` : ""}
+            content={item.title}
+            actions={
+              <ActionPanel>
+                <Action title={item.title} onAction={() => handleAction(item.command)} />
+              </ActionPanel>
+            }
+          />
+        ))}
+      </Grid>
+    </>
   );
 }

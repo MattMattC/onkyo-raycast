@@ -89,11 +89,12 @@ class OnkyoEiscp {
       console.log("=> before sendCommand");
       this.sendCommand(OnkyoCommands.VOLUME.QUERY);
       console.log("=> after sendCommand");
-      this.client.on("data", (data) => {
-        const response = this.parseResponse(data);
-        console.log("📥 Parsed response:", response);
-        resolve(response);
-      });
+
+      // this.client.on("data", (data) => {
+      //   const response = this.parseResponse(data);
+      //   console.log("📥 Parsed response:", response);
+      //   resolve(response);
+      // });
     });
   }
 
@@ -123,6 +124,21 @@ class OnkyoEiscp {
 
   unmute(): void {
     this.sendCommand(OnkyoCommands.AUDIO.MUTE_OFF);
+  }
+
+  isPowerOn(): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      this.sendCommand(OnkyoCommands.POWER.QUERY);
+      this.client.on("data", (data) => {
+        const response = this.parseResponse(data);
+        console.log("📥 Parseddd response:", response?.value);
+        if (response?.value.includes(OnkyoCommands.POWER.ON)) {
+          resolve(true);
+        } else {
+          resolve(false);
+        }
+      });
+    });
   }
 
   setSource(source: Command<"SOURCE">): void {
