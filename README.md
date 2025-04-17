@@ -1,3 +1,3 @@
 # Onkyo Control
 
-Control onkyo from network
+Control onkyo amplifier from network with **raycast**

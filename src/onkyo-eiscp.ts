@@ -141,7 +141,7 @@ class OnkyoEiscp {
     });
   }
 
-  setSource(source: Command<"SOURCE">): void {
+  setSource(source: "CD" | "TV" | "GAME" | "AUX" | "CLB/01" | "CLB/02"): void {
     this.sendCommand(OnkyoCommands.SOURCE[source]);
   }
 

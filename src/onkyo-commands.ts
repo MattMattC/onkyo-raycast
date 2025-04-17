@@ -20,7 +20,8 @@ export const OnkyoCommands = {
     TV: "SLI12",
     GAME: "SLI02",
     AUX: "SLI03",
-    BLUETOOTH: "SLI2A",
+    CLB01: "SLI01",
+    CLB02: "SLI02",
     QUERY: "SLIQSTN",
   },
 

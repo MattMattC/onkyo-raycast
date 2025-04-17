@@ -28,6 +28,42 @@
       ]
     },
     {
+      "name": "onkyo-source-change",
+      "title": "Onkyo Source",
+      "description": "change the source of the onkyo amplifier",
+      "mode": "no-view",
+      "arguments": [
+        {
+          "name": "source",
+          "placeholder": "Source",
+          "type": "dropdown",
+          "required": true,
+          "data": [
+            {
+              "title": "CD",
+              "value": "CD"
+            },
+            {
+              "title": "GAME",
+              "value": "GAME"
+            },
+            {
+              "title": "TV",
+              "value": "TV"
+            },
+            {
+              "title": "CLB/01",
+              "value": "CLB/01"
+            },
+            {
+              "title": "CLB/02",
+              "value": "CLB/02"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "onkyo-volume-mute",
       "title": "Onkyo Volume Mute",
       "description": "Set the volume of the onkyo amplifier",
