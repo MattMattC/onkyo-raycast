@@ -1,31 +1,32 @@
 export const OnkyoCommands = {
-  // Commandes d'alimentation
+  // power commands
   POWER: {
     ON: "PWR01",
     OFF: "PWR00",
     QUERY: "PWRQSTN",
   },
 
-  // Commandes de volume
+  // volume commands
   VOLUME: {
     UP: "MVLUP",
     DOWN: "MVLDOWN",
     QUERY: "MVLQSTN",
-    SET: (level: string) => `MVL${level}`, // Utilisé avec setVolume()
+    SET: (level: string) => `MVL${level}`, // used with setVolume()
   },
 
-  // Commandes de source
+  // source commands
+  // see @file src/commands.json
   SOURCE: {
     CD: "SLI23",
-    TV: "SLI12",
+    TV: "SLI23",
     GAME: "SLI02",
     AUX: "SLI03",
-    CLB01: "SLI01",
-    CLB02: "SLI02",
+    BD_DVD: "SLI10",
+    CBL_SAT: "SLI01",
     QUERY: "SLIQSTN",
   },
 
-  // Commandes de son
+  // audio commands
   AUDIO: {
     MUTE_ON: "AMT01",
     MUTE_OFF: "AMT00",

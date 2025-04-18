@@ -11,7 +11,8 @@ export default function Command(props: LaunchProps<{ arguments: Arguments.MyComm
 
     try {
       await receiver.connect();
-
+      const sources = await receiver.getSources();
+      console.log("sources", sources);
       receiver.setSource(source);
 
       setTimeout(() => receiver.disconnect(), 5000); // Déconnexion après 5 secondes
@@ -30,3 +31,35 @@ export default function Command(props: LaunchProps<{ arguments: Arguments.MyComm
     style: Toast.Style.Success,
   });
 }
+
+
+// 
+// AUX
+
+// type": "dropdown",
+          // "data": [
+          //   {
+          //     "title": "CD",
+          //     "value": "CD"
+          //   },
+          //   {
+          //     "title": "GAME",
+          //     "value": "GAME"
+          //   },
+          //   {
+          //     "title": "TV",
+          //     "value": "TV/CD"
+          //   },
+          //   {
+          //     "title": "CBL/01",
+          //     "value": "SAT"
+          //   },
+          //   {
+          //     "title": "CBL/02",
+          //     "value": "CBL/02"
+          //   },
+          //   {
+          //     "title": "BD/DVD",
+          //     "value": "BD"
+          //   }
+          // ]

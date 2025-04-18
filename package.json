@@ -37,7 +37,6 @@
           "name": "source",
           "placeholder": "Source",
           "type": "dropdown",
-          "required": true,
           "data": [
             {
               "title": "CD",
@@ -52,12 +51,16 @@
               "value": "TV"
             },
             {
-              "title": "CLB/01",
-              "value": "CLB/01"
+              "title": "CBL/01",
+              "value": "SAT"
             },
             {
-              "title": "CLB/02",
-              "value": "CLB/02"
+              "title": "CBL/02",
+              "value": "CBL/02"
+            },
+            {
+              "title": "BD/DVD",
+              "value": "BD_DVD"
             }
           ]
         }

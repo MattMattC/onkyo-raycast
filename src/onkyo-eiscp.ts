@@ -141,8 +141,20 @@ class OnkyoEiscp {
     });
   }
 
-  setSource(source: "CD" | "TV" | "GAME" | "AUX" | "CLB/01" | "CLB/02"): void {
+  setSource(source: (typeof OnkyoCommands.SOURCE)[keyof typeof OnkyoCommands.SOURCE]): void {
     this.sendCommand(OnkyoCommands.SOURCE[source]);
+  }
+
+  getSources(): Promise<OnkyoResponse[]> {
+    return new Promise((resolve, reject) => {
+      this.sendCommand(OnkyoCommands.SOURCE.QUERY);
+      this.client.on("data", (data) => {
+        const response = this.parseResponse(data);
+        console.log("=> -----------sourrce -------------");
+        console.log("📥 Parseddd response:", response?.value);
+        resolve(response?.value);
+      });
+    });
   }
 
   private parseResponse(data: Buffer): OnkyoResponse | null {
