@@ -31,35 +31,3 @@ export default function Command(props: LaunchProps<{ arguments: Arguments.MyComm
     style: Toast.Style.Success,
   });
 }
-
-
-// 
-// AUX
-
-// type": "dropdown",
-          // "data": [
-          //   {
-          //     "title": "CD",
-          //     "value": "CD"
-          //   },
-          //   {
-          //     "title": "GAME",
-          //     "value": "GAME"
-          //   },
-          //   {
-          //     "title": "TV",
-          //     "value": "TV/CD"
-          //   },
-          //   {
-          //     "title": "CBL/01",
-          //     "value": "SAT"
-          //   },
-          //   {
-          //     "title": "CBL/02",
-          //     "value": "CBL/02"
-          //   },
-          //   {
-          //     "title": "BD/DVD",
-          //     "value": "BD"
-          //   }
-          // ]
