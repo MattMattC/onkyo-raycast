@@ -1,32 +1,17 @@
-import { showToast, Toast, LaunchProps } from "@raycast/api";
+import { LaunchProps } from "@raycast/api";
+import { withOnkyo } from "./onkyo-client";
 
-import OnkyoEiscp from "./onkyo-eiscp";
-import { IP_ONKYO } from "./constants";
+type VolumeArguments = {
+  volume: string;
+};
 
-export default function Command(props: LaunchProps<{ arguments: Arguments.MyCommand }>) {
+export default async function Command(props: LaunchProps<{ arguments: VolumeArguments }>) {
   const { volume } = props.arguments;
 
-  (async () => {
-    const receiver = new OnkyoEiscp(IP_ONKYO);
-
-    try {
-      await receiver.connect();
-
+  await withOnkyo(
+    (receiver) => {
       receiver.setVolume(volume);
-
-      setTimeout(() => receiver.disconnect(), 5000); // Déconnexion après 5 secondes
-    } catch (error) {
-      console.error("Erreur:", error);
-      showToast({
-        title: "Erreur",
-        message: String(error),
-        style: Toast.Style.Failure,
-      });
-    }
-  })();
-
-  showToast({
-    title: "Volume set to " + volume,
-    style: Toast.Style.Success,
-  });
+    },
+    { successTitle: "Volume réglé", successMessage: `${volume}%` },
+  );
 }

@@ -2,21 +2,32 @@
   "$schema": "https://www.raycast.com/schemas/extension.json",
   "name": "onkyo-control",
   "title": "Onkyo Control",
-  "description": "Control onkyo from network",
+  "description": "Control your Onkyo amplifier over the network",
   "icon": "extension-icon.png",
   "author": "matthieu_coulon",
   "license": "MIT",
+  "preferences": [
+    {
+      "name": "ip",
+      "type": "textfield",
+      "required": true,
+      "title": "Onkyo IP Address",
+      "description": "Local IP address of your Onkyo receiver",
+      "default": "192.168.1.54",
+      "placeholder": "192.168.1.54"
+    }
+  ],
   "commands": [
     {
       "name": "onkyo-off",
       "title": "Onkyo Off",
-      "description": "Launch Onkyo Off",
+      "description": "Turn off the Onkyo amplifier",
       "mode": "no-view"
     },
     {
       "name": "onkyo-volume",
       "title": "Onkyo Volume",
-      "description": "Set the volume of the onkyo amplifier",
+      "description": "Set the volume of the Onkyo amplifier (0-100)",
       "mode": "no-view",
       "arguments": [
         {
@@ -30,71 +41,57 @@
     {
       "name": "onkyo-source-change",
       "title": "Onkyo Source",
-      "description": "change the source of the onkyo amplifier",
-      "mode": "no-view",
-      "arguments": [
-        {
-          "name": "source",
-          "placeholder": "Source",
-          "type": "dropdown",
-          "data": [
-            {
-              "title": "CD",
-              "value": "CD"
-            },
-            {
-              "title": "GAME",
-              "value": "GAME"
-            },
-            {
-              "title": "TV",
-              "value": "TV"
-            },
-            {
-              "title": "CBL/01",
-              "value": "SAT"
-            },
-            {
-              "title": "CBL/02",
-              "value": "CBL/02"
-            },
-            {
-              "title": "BD/DVD",
-              "value": "BD_DVD"
-            }
-          ]
-        }
-      ]
+      "description": "Select an input source on the Onkyo amplifier",
+      "mode": "view"
     },
     {
       "name": "onkyo-volume-mute",
       "title": "Onkyo Volume Mute",
-      "description": "Set the volume of the onkyo amplifier",
+      "description": "Mute the Onkyo amplifier",
       "mode": "no-view"
     },
     {
       "name": "onkyo-volume-unmute",
       "title": "Onkyo Volume Unmute",
-      "description": "Set the volume of the onkyo amplifier",
+      "description": "Unmute the Onkyo amplifier",
       "mode": "no-view"
     },
     {
       "name": "onkyo-on",
       "title": "Onkyo On",
-      "description": "Turn on the onkyo amplifier",
+      "description": "Turn on the Onkyo amplifier",
       "mode": "no-view"
+    },
+    {
+      "name": "scenes",
+      "title": "Onkyo Scenes",
+      "description": "Create and run Onkyo scenes (power, source, volume presets)",
+      "mode": "view"
+    },
+    {
+      "name": "run-scene",
+      "title": "Run Onkyo Scene",
+      "description": "Run a saved Onkyo scene by name",
+      "mode": "no-view",
+      "arguments": [
+        {
+          "name": "scene",
+          "placeholder": "Mode musique",
+          "type": "text",
+          "required": true
+        }
+      ]
     },
     {
       "name": "remote",
       "title": "Onkyo Remote",
-      "description": "Remote control the onkyo amplifier",
+      "description": "Remote control the Onkyo amplifier",
       "mode": "view"
     }
   ],
   "dependencies": {
     "@raycast/api": "^1.91.1",
-    "@raycast/utils": "^1.17.0",
-    "eiscp": "^0.2.0"
+    "@raycast/utils": "^1.17.0"
   },
   "devDependencies": {
     "@raycast/eslint-config": "^1.0.11",

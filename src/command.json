@@ -110,25 +110,17 @@
             "models": "set5"
           },
           "FH": {
-            "name": [
-              "front-high",
-              "surrback-front-high-speakers"
-            ],
+            "name": ["front-high", "surrback-front-high-speakers"],
             "description": "sets Front High Speaker / SurrBack+Front High Speakers",
             "models": "set6"
           },
           "FW": {
-            "name": [
-              "front-wide",
-              "surrback-front-wide-speakers"
-            ],
+            "name": ["front-wide", "surrback-front-wide-speakers"],
             "description": "sets Front Wide Speaker / SurrBack+Front Wide Speakers",
             "models": "set7"
           },
           "HW": {
-            "name": [
-              "front-high-front-wide-speakers"
-            ],
+            "name": ["front-high-front-wide-speakers"],
             "description": "sets, Front High+Front Wide Speakers",
             "models": "set8"
           },
@@ -145,10 +137,7 @@
         }
       },
       "MVL": {
-        "name": [
-          "master-volume",
-          "volume"
-        ],
+        "name": ["master-volume", "volume"],
         "description": "Master Volume Command",
         "values": {
           "0,100": {
@@ -756,20 +745,12 @@
         "description": "Input Selector Command",
         "values": {
           "10": {
-            "name": [
-              "dvd",
-              "bd",
-              "dvd"
-            ],
+            "name": ["dvd", "bd", "dvd"],
             "description": "sets DVD, BD/DVD",
             "models": "set1"
           },
           "20": {
-            "name": [
-              "tape-1",
-              "tv",
-              "tape"
-            ],
+            "name": ["tape-1", "tv", "tape"],
             "description": "sets TAPE(1), TV/TAPE",
             "models": "set36"
           },
@@ -784,11 +765,7 @@
             "models": "set37"
           },
           "23": {
-            "name": [
-              "cd",
-              "tv",
-              "cd"
-            ],
+            "name": ["cd", "tv", "cd"],
             "description": "sets CD, TV/CD",
             "models": "set1"
           },
@@ -808,27 +785,17 @@
             "models": "set2"
           },
           "27": {
-            "name": [
-              "music-server",
-              "p4s",
-              "dlna"
-            ],
+            "name": ["music-server", "p4s", "dlna"],
             "description": "sets MUSIC SERVER, P4S, DLNA",
             "models": "set38"
           },
           "28": {
-            "name": [
-              "internet-radio",
-              "iradio-favorite"
-            ],
+            "name": ["internet-radio", "iradio-favorite"],
             "description": "sets INTERNET RADIO, iRadio Favorite",
             "models": "set38"
           },
           "29": {
-            "name": [
-              "usb",
-              "usb"
-            ],
+            "name": ["usb", "usb"],
             "description": "sets USB/USB(Front)",
             "models": "set39"
           },
@@ -853,54 +820,32 @@
             "models": "set12"
           },
           "00": {
-            "name": [
-              "video1",
-              "vcr",
-              "dvr"
-            ],
+            "name": ["video1", "vcr", "dvr"],
             "description": "sets VIDEO1, VCR/DVR",
             "models": "set1"
           },
           "01": {
-            "name": [
-              "video2",
-              "cbl",
-              "sat"
-            ],
+            "name": ["video2", "cbl", "sat"],
             "description": "sets VIDEO2, CBL/SAT",
             "models": "set1"
           },
           "02": {
-            "name": [
-              "video3",
-              "game",
-              "tv",
-              "game"
-            ],
+            "name": ["video3", "game", "tv", "game"],
             "description": "sets VIDEO3, GAME/TV, GAME",
             "models": "set1"
           },
           "03": {
-            "name": [
-              "video4",
-              "aux1"
-            ],
+            "name": ["video4", "aux1"],
             "description": "sets VIDEO4, AUX1(AUX)",
             "models": "set31"
           },
           "04": {
-            "name": [
-              "video5",
-              "aux2"
-            ],
+            "name": ["video5", "aux2"],
             "description": "sets VIDEO5, AUX2",
             "models": "set32"
           },
           "05": {
-            "name": [
-              "video6",
-              "pc"
-            ],
+            "name": ["video6", "pc"],
             "description": "sets VIDEO6, PC",
             "models": "set33"
           },
@@ -930,10 +875,7 @@
             "models": "set40"
           },
           "2B": {
-            "name": [
-              "network",
-              "net"
-            ],
+            "name": ["network", "net"],
             "description": "sets NETWORK, NET",
             "models": "set41"
           },
@@ -1105,10 +1047,7 @@
             "models": "set56"
           },
           "05": {
-            "name": [
-              "coax",
-              "opt"
-            ],
+            "name": ["coax", "opt"],
             "description": "sets COAX/OPT",
             "models": "set12"
           },
@@ -1208,47 +1147,32 @@
         "description": "HDMI Output Selector",
         "values": {
           "00": {
-            "name": [
-              "no",
-              "analog"
-            ],
+            "name": ["no", "analog"],
             "description": "sets No, Analog",
             "models": "set62"
           },
           "01": {
-            "name": [
-              "yes",
-              "out"
-            ],
+            "name": ["yes", "out"],
             "description": "sets Yes/Out Main, HDMI Main",
             "models": "set63"
           },
           "02": {
-            "name": [
-              "out-sub",
-              "sub"
-            ],
+            "name": ["out-sub", "sub"],
             "description": "sets Out Sub, HDMI Sub",
             "models": "set64"
           },
           "03": {
-            "name": [
-              "both"
-            ],
+            "name": ["both"],
             "description": "sets, Both",
             "models": "set65"
           },
           "04": {
-            "name": [
-              "both"
-            ],
+            "name": ["both"],
             "description": "sets, Both(Main)",
             "models": "set65"
           },
           "05": {
-            "name": [
-              "both"
-            ],
+            "name": ["both"],
             "description": "sets, Both(Sub)",
             "models": "set65"
           },
@@ -1330,10 +1254,7 @@
             "models": "set67"
           },
           "07": {
-            "name": [
-              "1080p",
-              "24fs"
-            ],
+            "name": ["1080p", "24fs"],
             "description": "sets 1080p/24fs(HDMI Output Only)",
             "models": "set68"
           },
@@ -1557,91 +1478,52 @@
             "models": "set91"
           },
           "50": {
-            "name": [
-              "thx-u2",
-              "s2",
-              "i",
-              "s-cinema",
-              "cinema2"
-            ],
+            "name": ["thx-u2", "s2", "i", "s-cinema", "cinema2"],
             "description": "sets THX U2/S2/I/S Cinema/Cinema2",
             "models": "set92"
           },
           "51": {
-            "name": [
-              "thx-musicmode",
-              "thx-u2",
-              "s2",
-              "i",
-              "s-music"
-            ],
+            "name": ["thx-musicmode", "thx-u2", "s2", "i", "s-music"],
             "description": "sets THX MusicMode,THX U2/S2/I/S Music",
             "models": "set92"
           },
           "52": {
-            "name": [
-              "thx-games",
-              "thx-u2",
-              "s2",
-              "i",
-              "s-games"
-            ],
+            "name": ["thx-games", "thx-u2", "s2", "i", "s-games"],
             "description": "sets THX Games Mode,THX U2/S2/I/S Games",
             "models": "set92"
           },
           "80": {
-            "name": [
-              "plii",
-              "pliix-movie"
-            ],
+            "name": ["plii", "pliix-movie"],
             "description": "sets PLII/PLIIx Movie",
             "models": "set93"
           },
           "81": {
-            "name": [
-              "plii",
-              "pliix-music"
-            ],
+            "name": ["plii", "pliix-music"],
             "description": "sets PLII/PLIIx Music",
             "models": "set93"
           },
           "82": {
-            "name": [
-              "neo-6-cinema",
-              "neo-x-cinema"
-            ],
+            "name": ["neo-6-cinema", "neo-x-cinema"],
             "description": "sets Neo:6 Cinema/Neo:X Cinema",
             "models": "set94"
           },
           "83": {
-            "name": [
-              "neo-6-music",
-              "neo-x-music"
-            ],
+            "name": ["neo-6-music", "neo-x-music"],
             "description": "sets Neo:6 Music/Neo:X Music",
             "models": "set94"
           },
           "84": {
-            "name": [
-              "plii",
-              "pliix-thx-cinema"
-            ],
+            "name": ["plii", "pliix-thx-cinema"],
             "description": "sets PLII/PLIIx THX Cinema",
             "models": "set95"
           },
           "85": {
-            "name": [
-              "neo-6",
-              "neo-x-thx-cinema"
-            ],
+            "name": ["neo-6", "neo-x-thx-cinema"],
             "description": "sets Neo:6/Neo:X THX Cinema",
             "models": "set95"
           },
           "86": {
-            "name": [
-              "plii",
-              "pliix-game"
-            ],
+            "name": ["plii", "pliix-game"],
             "description": "sets PLII/PLIIx Game",
             "models": "set84"
           },
@@ -1651,18 +1533,12 @@
             "models": "set96"
           },
           "88": {
-            "name": [
-              "neural-thx",
-              "neural-surround"
-            ],
+            "name": ["neural-thx", "neural-surround"],
             "description": "sets Neural THX/Neural Surround",
             "models": "set97"
           },
           "89": {
-            "name": [
-              "plii",
-              "pliix-thx-games"
-            ],
+            "name": ["plii", "pliix-thx-games"],
             "description": "sets PLII/PLIIx THX Games",
             "models": "set98"
           },
@@ -1702,26 +1578,17 @@
             "models": "set86"
           },
           "97": {
-            "name": [
-              "pliiz-height-thx-u2",
-              "s2-cinema"
-            ],
+            "name": ["pliiz-height-thx-u2", "s2-cinema"],
             "description": "sets PLIIz Height + THX U2/S2 Cinema",
             "models": "set102"
           },
           "98": {
-            "name": [
-              "pliiz-height-thx-u2",
-              "s2-music"
-            ],
+            "name": ["pliiz-height-thx-u2", "s2-music"],
             "description": "sets PLIIz Height + THX U2/S2 Music",
             "models": "set102"
           },
           "99": {
-            "name": [
-              "pliiz-height-thx-u2",
-              "s2-games"
-            ],
+            "name": ["pliiz-height-thx-u2", "s2-games"],
             "description": "sets PLIIz Height + THX U2/S2 Games",
             "models": "set102"
           },
@@ -1741,10 +1608,7 @@
             "models": "set1"
           },
           "03": {
-            "name": [
-              "film",
-              "game-rpg"
-            ],
+            "name": ["film", "game-rpg"],
             "description": "sets FILM, Game-RPG",
             "models": "set77"
           },
@@ -1754,18 +1618,12 @@
             "models": "set78"
           },
           "05": {
-            "name": [
-              "action",
-              "game-action"
-            ],
+            "name": ["action", "game-action"],
             "description": "sets ACTION, Game-Action",
             "models": "set77"
           },
           "06": {
-            "name": [
-              "musical",
-              "game-rock"
-            ],
+            "name": ["musical", "game-rock"],
             "description": "sets MUSICAL, Game-Rock",
             "models": "set77"
           },
@@ -1805,11 +1663,7 @@
             "models": "set80"
           },
           "0E": {
-            "name": [
-              "enhanced-7",
-              "enhance",
-              "game-sports"
-            ],
+            "name": ["enhanced-7", "enhance", "game-sports"],
             "description": "sets ENHANCED 7/ENHANCE, Game-Sports",
             "models": "set81"
           },
@@ -1824,26 +1678,17 @@
             "models": "set87"
           },
           "8A": {
-            "name": [
-              "neo-6",
-              "neo-x-thx-games"
-            ],
+            "name": ["neo-6", "neo-x-thx-games"],
             "description": "sets Neo:6/Neo:X THX Games",
             "models": "set98"
           },
           "8B": {
-            "name": [
-              "plii",
-              "pliix-thx-music"
-            ],
+            "name": ["plii", "pliix-thx-music"],
             "description": "sets PLII/PLIIx THX Music",
             "models": "set91"
           },
           "8C": {
-            "name": [
-              "neo-6",
-              "neo-x-thx-music"
-            ],
+            "name": ["neo-6", "neo-x-thx-music"],
             "description": "sets Neo:6/Neo:X THX Music",
             "models": "set91"
           },
@@ -1868,26 +1713,17 @@
             "models": "set103"
           },
           "A0": {
-            "name": [
-              "pliix",
-              "plii-movie-audyssey-dsx"
-            ],
+            "name": ["pliix", "plii-movie-audyssey-dsx"],
             "description": "sets PLIIx/PLII Movie + Audyssey DSX",
             "models": "set86"
           },
           "A1": {
-            "name": [
-              "pliix",
-              "plii-music-audyssey-dsx"
-            ],
+            "name": ["pliix", "plii-music-audyssey-dsx"],
             "description": "sets PLIIx/PLII Music + Audyssey DSX",
             "models": "set86"
           },
           "A2": {
-            "name": [
-              "pliix",
-              "plii-game-audyssey-dsx"
-            ],
+            "name": ["pliix", "plii-game-audyssey-dsx"],
             "description": "sets PLIIx/PLII Game + Audyssey DSX",
             "models": "set86"
           },
@@ -1958,17 +1794,12 @@
             "models": "set1"
           },
           "01": {
-            "name": [
-              "low-dolbydigital",
-              "on-dolby-truehd"
-            ],
+            "name": ["low-dolbydigital", "on-dolby-truehd"],
             "description": "sets Late Night Low@DolbyDigital,On@Dolby TrueHD",
             "models": "set1"
           },
           "02": {
-            "name": [
-              "high-dolbydigital"
-            ],
+            "name": ["high-dolbydigital"],
             "description": "sets Late Night High@DolbyDigital,(On@Dolby TrueHD)",
             "models": "set1"
           },
@@ -2020,24 +1851,17 @@
         "description": "Audyssey 2EQ/MultEQ/MultEQ XT",
         "values": {
           "00": {
-            "name": [
-              "off"
-            ],
+            "name": ["off"],
             "description": "sets Audyssey 2EQ/MultEQ/MultEQ XT Off",
             "models": "set110"
           },
           "01": {
-            "name": [
-              "on",
-              "movie"
-            ],
+            "name": ["on", "movie"],
             "description": "sets Audyssey 2EQ/MultEQ/MultEQ XT On/Movie",
             "models": "set110"
           },
           "02": {
-            "name": [
-              "music"
-            ],
+            "name": ["music"],
             "description": "sets Audyssey 2EQ/MultEQ/MultEQ XT Music",
             "models": "set41"
           },
@@ -2125,10 +1949,7 @@
             "models": "set111"
           },
           "01": {
-            "name": [
-              "low",
-              "on"
-            ],
+            "name": ["low", "on"],
             "description": "sets Dolby Volume Low/On",
             "models": "set111"
           },
@@ -4806,11 +4627,7 @@
         "description": "ZONE2 Selector Command",
         "values": {
           "10": {
-            "name": [
-              "dvd",
-              "bd",
-              "dvd"
-            ],
+            "name": ["dvd", "bd", "dvd"],
             "description": "sets DVD, BD/DVD",
             "models": "set145"
           },
@@ -4830,11 +4647,7 @@
             "models": "set149"
           },
           "23": {
-            "name": [
-              "cd",
-              "tv",
-              "cd"
-            ],
+            "name": ["cd", "tv", "cd"],
             "description": "sets CD, TV/CD",
             "models": "set145"
           },
@@ -4854,27 +4667,17 @@
             "models": "set150"
           },
           "27": {
-            "name": [
-              "music-server",
-              "p4s",
-              "dlna"
-            ],
+            "name": ["music-server", "p4s", "dlna"],
             "description": "sets MUSIC SERVER, P4S, DLNA",
             "models": "set151"
           },
           "28": {
-            "name": [
-              "internet-radio",
-              "iradio-favorite"
-            ],
+            "name": ["internet-radio", "iradio-favorite"],
             "description": "sets INTERNET RADIO, iRadio Favorite",
             "models": "set151"
           },
           "29": {
-            "name": [
-              "usb",
-              "usb"
-            ],
+            "name": ["usb", "usb"],
             "description": "sets USB/USB(Front)",
             "models": "set39"
           },
@@ -4904,54 +4707,32 @@
             "models": "set145"
           },
           "00": {
-            "name": [
-              "video1",
-              "vcr",
-              "dvr"
-            ],
+            "name": ["video1", "vcr", "dvr"],
             "description": "sets VIDEO1, VCR/DVR",
             "models": "set145"
           },
           "01": {
-            "name": [
-              "video2",
-              "cbl",
-              "sat"
-            ],
+            "name": ["video2", "cbl", "sat"],
             "description": "sets VIDEO2, CBL/SAT",
             "models": "set145"
           },
           "02": {
-            "name": [
-              "video3",
-              "game",
-              "tv",
-              "game"
-            ],
+            "name": ["video3", "game", "tv", "game"],
             "description": "sets VIDEO3, GAME/TV, GAME",
             "models": "set145"
           },
           "03": {
-            "name": [
-              "video4",
-              "aux1"
-            ],
+            "name": ["video4", "aux1"],
             "description": "sets VIDEO4, AUX1(AUX)",
             "models": "set146"
           },
           "04": {
-            "name": [
-              "video5",
-              "aux2"
-            ],
+            "name": ["video5", "aux2"],
             "description": "sets VIDEO5, AUX2",
             "models": "set32"
           },
           "05": {
-            "name": [
-              "video6",
-              "pc"
-            ],
+            "name": ["video6", "pc"],
             "description": "sets VIDEO6, PC",
             "models": "set33"
           },
@@ -4981,10 +4762,7 @@
             "models": "set40"
           },
           "2B": {
-            "name": [
-              "network",
-              "net"
-            ],
+            "name": ["network", "net"],
             "description": "sets NETWORK, NET",
             "models": "set152"
           },
@@ -5588,11 +5366,7 @@
             "models": "set159"
           },
           "23": {
-            "name": [
-              "cd",
-              "tv",
-              "cd"
-            ],
+            "name": ["cd", "tv", "cd"],
             "description": "sets CD, TV/CD",
             "models": "set159"
           },
@@ -5612,27 +5386,17 @@
             "models": "set159"
           },
           "27": {
-            "name": [
-              "music-server",
-              "p4s",
-              "dlna"
-            ],
+            "name": ["music-server", "p4s", "dlna"],
             "description": "sets MUSIC SERVER, P4S, DLNA",
             "models": "set164"
           },
           "28": {
-            "name": [
-              "internet-radio",
-              "iradio-favorite"
-            ],
+            "name": ["internet-radio", "iradio-favorite"],
             "description": "sets INTERNET RADIO, iRadio Favorite",
             "models": "set164"
           },
           "29": {
-            "name": [
-              "usb",
-              "usb"
-            ],
+            "name": ["usb", "usb"],
             "description": "sets USB/USB(Front)",
             "models": "set165"
           },
@@ -5662,54 +5426,32 @@
             "models": "set159"
           },
           "00": {
-            "name": [
-              "video1",
-              "vcr",
-              "dvr"
-            ],
+            "name": ["video1", "vcr", "dvr"],
             "description": "sets VIDEO1, VCR/DVR",
             "models": "set159"
           },
           "01": {
-            "name": [
-              "video2",
-              "cbl",
-              "sat"
-            ],
+            "name": ["video2", "cbl", "sat"],
             "description": "sets VIDEO2, CBL/SAT",
             "models": "set159"
           },
           "02": {
-            "name": [
-              "video3",
-              "game",
-              "tv",
-              "game"
-            ],
+            "name": ["video3", "game", "tv", "game"],
             "description": "sets VIDEO3, GAME/TV, GAME",
             "models": "set159"
           },
           "03": {
-            "name": [
-              "video4",
-              "aux1"
-            ],
+            "name": ["video4", "aux1"],
             "description": "sets VIDEO4, AUX1(AUX)",
             "models": "set159"
           },
           "04": {
-            "name": [
-              "video5",
-              "aux2"
-            ],
+            "name": ["video5", "aux2"],
             "description": "sets VIDEO5, AUX2",
             "models": "set161"
           },
           "05": {
-            "name": [
-              "video6",
-              "pc"
-            ],
+            "name": ["video6", "pc"],
             "description": "sets VIDEO6, PC",
             "models": "set162"
           },
@@ -5739,10 +5481,7 @@
             "models": "set40"
           },
           "2B": {
-            "name": [
-              "network",
-              "net"
-            ],
+            "name": ["network", "net"],
             "description": "sets NETWORK, NET",
             "models": "set76"
           },
@@ -6161,11 +5900,7 @@
             "models": "set173"
           },
           "20": {
-            "name": [
-              "tape-1",
-              "tv",
-              "tape"
-            ],
+            "name": ["tape-1", "tv", "tape"],
             "description": "sets TAPE(1), TV/TAPE",
             "models": "set173"
           },
@@ -6180,11 +5915,7 @@
             "models": "set173"
           },
           "23": {
-            "name": [
-              "cd",
-              "tv",
-              "cd"
-            ],
+            "name": ["cd", "tv", "cd"],
             "description": "sets CD, TV/CD",
             "models": "set173"
           },
@@ -6204,27 +5935,17 @@
             "models": "set173"
           },
           "27": {
-            "name": [
-              "music-server",
-              "p4s",
-              "dlna"
-            ],
+            "name": ["music-server", "p4s", "dlna"],
             "description": "sets MUSIC SERVER, P4S, DLNA",
             "models": "set173"
           },
           "28": {
-            "name": [
-              "internet-radio",
-              "iradio-favorite"
-            ],
+            "name": ["internet-radio", "iradio-favorite"],
             "description": "sets INTERNET RADIO, iRadio Favorite",
             "models": "set173"
           },
           "29": {
-            "name": [
-              "usb",
-              "usb"
-            ],
+            "name": ["usb", "usb"],
             "description": "sets USB/USB(Front)",
             "models": "set173"
           },
@@ -6254,46 +5975,27 @@
             "models": "set173"
           },
           "00": {
-            "name": [
-              "video1",
-              "vcr",
-              "dvr"
-            ],
+            "name": ["video1", "vcr", "dvr"],
             "description": "sets VIDEO1, VCR/DVR",
             "models": "set173"
           },
           "01": {
-            "name": [
-              "video2",
-              "cbl",
-              "sat"
-            ],
+            "name": ["video2", "cbl", "sat"],
             "description": "sets VIDEO2, CBL/SAT",
             "models": "set173"
           },
           "02": {
-            "name": [
-              "video3",
-              "game",
-              "tv",
-              "game"
-            ],
+            "name": ["video3", "game", "tv", "game"],
             "description": "sets VIDEO3, GAME/TV, GAME",
             "models": "set173"
           },
           "03": {
-            "name": [
-              "video4",
-              "aux1"
-            ],
+            "name": ["video4", "aux1"],
             "description": "sets VIDEO4, AUX1(AUX)",
             "models": "set173"
           },
           "04": {
-            "name": [
-              "video5",
-              "aux2"
-            ],
+            "name": ["video5", "aux2"],
             "description": "sets VIDEO5, AUX2",
             "models": "set174"
           },
@@ -6328,10 +6030,7 @@
             "models": "set177"
           },
           "2B": {
-            "name": [
-              "network",
-              "net"
-            ],
+            "name": ["network", "net"],
             "description": "sets NETWORK, NET",
             "models": "set176"
           },
@@ -7027,14 +6726,7 @@
       "TX-SR875",
       "TX-SR876"
     ],
-    "set3": [
-      "DTR-10.5",
-      "DTR-5.2",
-      "ETX-NA1000",
-      "RDC-7.1",
-      "TX-NR1000",
-      "TX-NR5000"
-    ],
+    "set3": ["DTR-10.5", "DTR-5.2", "ETX-NA1000", "RDC-7.1", "TX-NR1000", "TX-NR5000"],
     "set4": [
       "DTR-10.5",
       "DTR-5.2",
@@ -7149,16 +6841,7 @@
       "TX-NR809",
       "TX-SR707"
     ],
-    "set8": [
-      "DHC-80.3",
-      "DTR-70.3",
-      "DTR-80.3",
-      "PR-SC5509",
-      "TX-NR1008",
-      "TX-NR1009",
-      "TX-NR3009",
-      "TX-NR5009"
-    ],
+    "set8": ["DHC-80.3", "DTR-70.3", "DTR-80.3", "PR-SC5509", "TX-NR1008", "TX-NR1009", "TX-NR3009", "TX-NR5009"],
     "set9": [
       "DHC-40.1",
       "DHC-40.2",
@@ -7667,16 +7350,7 @@
       "TX-SR806",
       "TX-SR876"
     ],
-    "set17": [
-      "DTC-9.1",
-      "DTR-7.1",
-      "DTR-9.1",
-      "RDC-7",
-      "RDC-7(Ver2.0)",
-      "TX-DS787",
-      "TX-DS989",
-      "TX-DS989"
-    ],
+    "set17": ["DTC-9.1", "DTR-7.1", "DTR-9.1", "RDC-7", "RDC-7(Ver2.0)", "TX-DS787", "TX-DS989", "TX-DS989"],
     "set18": [
       "DHC-40.1",
       "DHC-40.2",
@@ -8714,13 +8388,7 @@
       "TX-NR808",
       "TX-NR809"
     ],
-    "set34": [
-      "DTR-10.5",
-      "ETX-NA1000",
-      "RDC-7.1",
-      "TX-NR1000",
-      "TX-NR5000"
-    ],
+    "set34": ["DTR-10.5", "ETX-NA1000", "RDC-7.1", "TX-NR1000", "TX-NR5000"],
     "set35": [
       "DHC-40.2",
       "DHC-80.2",
@@ -9737,14 +9405,7 @@
       "TX-SR875",
       "TX-SR876"
     ],
-    "set57": [
-      "DHC-80.1",
-      "DHC-80.2",
-      "DHC-80.3",
-      "PR-SC5507",
-      "PR-SC5508",
-      "PR-SC5509"
-    ],
+    "set57": ["DHC-80.1", "DHC-80.2", "DHC-80.3", "PR-SC5507", "PR-SC5508", "PR-SC5509"],
     "set58": [
       "DHC-40.1",
       "DHC-40.2",
@@ -9966,14 +9627,7 @@
       "TX-SR703",
       "TX-SR803"
     ],
-    "set61": [
-      "DTR-4.6",
-      "DTR-5.6",
-      "DTR-6.6",
-      "DTR-7.6",
-      "TX-SR703",
-      "TX-SR803"
-    ],
+    "set61": ["DTR-4.6", "DTR-5.6", "DTR-6.6", "DTR-7.6", "TX-SR703", "TX-SR803"],
     "set62": [
       "DHC-40.1",
       "DHC-40.2",
@@ -10476,14 +10130,7 @@
       "TX-NR808",
       "TX-NR809"
     ],
-    "set74": [
-      "DHC-80.2",
-      "DTR-70.2",
-      "DTR-80.2",
-      "PR-SC5508",
-      "TX-NR3008",
-      "TX-NR5008"
-    ],
+    "set74": ["DHC-80.2", "DTR-70.2", "DTR-80.2", "PR-SC5508", "TX-NR3008", "TX-NR5008"],
     "set75": [
       "DHC-40.2",
       "DHC-80.2",
@@ -11247,14 +10894,7 @@
       "TX-SR875",
       "TX-SR876"
     ],
-    "set85": [
-      "PR-SC5507",
-      "TX-NR1007",
-      "TX-NR3007",
-      "TX-NR5007",
-      "TX-NR807",
-      "TX-SR707"
-    ],
+    "set85": ["PR-SC5507", "TX-NR1007", "TX-NR3007", "TX-NR5007", "TX-NR807", "TX-SR707"],
     "set86": [
       "DHC-40.1",
       "DHC-40.2",
@@ -11899,10 +11539,7 @@
       "TX-SR875",
       "TX-SR876"
     ],
-    "set96": [
-      "DTR-5.8",
-      "DTX-5.8"
-    ],
+    "set96": ["DTR-5.8", "DTX-5.8"],
     "set97": [
       "DHC-80.1",
       "DHC-80.2",
@@ -12131,15 +11768,7 @@
       "TX-NR807",
       "TX-SR707"
     ],
-    "set103": [
-      "DHC-80.3",
-      "DTR-70.3",
-      "DTR-80.3",
-      "PR-SC5509",
-      "TX-NR1009",
-      "TX-NR3009",
-      "TX-NR5009"
-    ],
+    "set103": ["DHC-80.3", "DTR-70.3", "DTR-80.3", "PR-SC5509", "TX-NR1009", "TX-NR3009", "TX-NR5009"],
     "set104": [
       "DHC-40.1",
       "DHC-40.2",
@@ -12507,14 +12136,7 @@
       "TX-NR709",
       "TX-NR809"
     ],
-    "set112": [
-      "DHC-80.1",
-      "DTR-70.1",
-      "DTR-80.1",
-      "PR-SC5507",
-      "TX-NR3007",
-      "TX-NR5007"
-    ],
+    "set112": ["DHC-80.1", "DTR-70.1", "DTR-80.1", "PR-SC5507", "TX-NR3007", "TX-NR5007"],
     "set113": [
       "DHC-40.1",
       "DHC-40.2",
@@ -12643,10 +12265,7 @@
       "TX-SR875",
       "TX-SR876"
     ],
-    "set114": [
-      "DTR-5.2",
-      "DTR-6.2"
-    ],
+    "set114": ["DTR-5.2", "DTR-6.2"],
     "set115": [
       "DHC-40.1",
       "DHC-40.2",
@@ -14158,15 +13777,7 @@
       "TX-SR875",
       "TX-SR876"
     ],
-    "set142": [
-      "DTR-20.1",
-      "DTR-30.1",
-      "DTR-4.9",
-      "DTR-5.9",
-      "DTR-6.2",
-      "DTX-5.9",
-      "TX-NR579(Ether)"
-    ],
+    "set142": ["DTR-20.1", "DTR-30.1", "DTR-4.9", "DTR-5.9", "DTR-6.2", "DTX-5.9", "TX-NR579(Ether)"],
     "set143": [
       "DHC-40.1",
       "DHC-40.2",
@@ -14573,16 +14184,7 @@
       "TX-SR875",
       "TX-SR876"
     ],
-    "set147": [
-      "DHC-80.3",
-      "DTR-20.3",
-      "DTR-30.3",
-      "DTR-40.3",
-      "DTR-50.3",
-      "DTR-70.3",
-      "DTR-80.3",
-      "PR-SC5509"
-    ],
+    "set147": ["DHC-80.3", "DTR-20.3", "DTR-30.3", "DTR-40.3", "DTR-50.3", "DTR-70.3", "DTR-80.3", "PR-SC5509"],
     "set148": [
       "DHC-40.1",
       "DHC-80.1",
@@ -15842,40 +15444,12 @@
       "TX-NR809",
       "TX-NR906"
     ],
-    "set173": [
-      "DTR-70.1",
-      "DTR-70.2",
-      "DTR-70.3",
-      "DTR-80.1",
-      "DTR-80.2",
-      "DTR-80.3"
-    ],
-    "set174": [
-      "DTR-70.1",
-      "DTR-80.1"
-    ],
-    "set175": [
-      "DTR-70.2",
-      "DTR-70.3",
-      "DTR-80.2",
-      "DTR-80.3"
-    ],
-    "set176": [
-      "DTR-70.3",
-      "DTR-80.3"
-    ],
-    "set177": [
-      "DTR-70.3",
-      "DTR-80.1",
-      "DTR-80.2",
-      "DTR-80.3"
-    ],
-    "set178": [
-      "DTR-70.1",
-      "DTR-70.2",
-      "DTR-80.1",
-      "DTR-80.2"
-    ],
+    "set173": ["DTR-70.1", "DTR-70.2", "DTR-70.3", "DTR-80.1", "DTR-80.2", "DTR-80.3"],
+    "set174": ["DTR-70.1", "DTR-80.1"],
+    "set175": ["DTR-70.2", "DTR-70.3", "DTR-80.2", "DTR-80.3"],
+    "set176": ["DTR-70.3", "DTR-80.3"],
+    "set177": ["DTR-70.3", "DTR-80.1", "DTR-80.2", "DTR-80.3"],
+    "set178": ["DTR-70.1", "DTR-70.2", "DTR-80.1", "DTR-80.2"],
     "set179": [
       "DHC-40.1",
       "DHC-40.2",

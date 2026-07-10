@@ -1,126 +1,170 @@
-import { ActionPanel, Action, List, showToast, Toast, Grid } from "@raycast/api";
+import { Action, ActionPanel, Icon, List, showToast, Toast } from "@raycast/api";
+import { useCallback, useEffect, useState } from "react";
+import { getOnkyoIp, withOnkyo } from "./onkyo-client";
 import OnkyoEiscp from "./onkyo-eiscp";
-import { IP_ONKYO } from "./constants";
-import { useEffect, useState } from "react";
-
-interface CommandItem {
-  title: string;
-  command: () => void;
-}
-let mounted = false;
-
-const receiver = new OnkyoEiscp(IP_ONKYO);
+import { executeScene } from "./scene-runner";
+import { getScenes } from "./scene-storage";
+import { describeScene, OnkyoScene } from "./scene-types";
+import { ONKYO_SOURCES } from "./sources";
 
 export default function Command() {
-  let currentVolume = 0;
+  const [isPowerOn, setIsPowerOn] = useState<boolean | null>(null);
+  const [currentSourceCode, setCurrentSourceCode] = useState<string | null>(null);
+  const [scenes, setScenes] = useState<OnkyoScene[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const [isPowerOnState, setIsPowerOnState] = useState(false);
+  const loadState = useCallback(async () => {
+    setIsLoading(true);
 
-  useEffect(() => {
-    if (!mounted) {
-      mounted = true;
+    const receiver = new OnkyoEiscp(getOnkyoIp());
 
-      const connect = async () => {
-        await receiver.connect();
-        try {
-          const isPowerOn = await receiver.isPowerOn();
-          console.log("=> isPowerOn", isPowerOn);
-          setIsPowerOnState(isPowerOn);
-          showToast({
-            title: "État",
-            message: isPowerOn ? "Allumé" : "Éteint",
-            style: Toast.Style.Success,
-          });
-        } catch (error) {
-          showToast({
-            title: "Erreur",
-            message: "Éteint",
-            style: Toast.Style.Failure,
-          });
-        }
-        // await receiver.getVolume();
-      };
-
-      connect();
-      console.log("=> lq");
-    }
-
-    return () => {};
-  }, []);
-
-  const commands: CommandItem[] = [
-    {
-      title: "Allumer",
-      command: () => receiver.powerOn(),
-    },
-    {
-      title: "Éteindre",
-      command: () => receiver.powerOff(),
-    },
-    {
-      title: "Couper le son",
-      command: () => receiver.mute(),
-    },
-    {
-      title: "Remettre le son",
-      command: () => receiver.unmute(),
-    },
-    {
-      title: "Volume +",
-      command: () => {
-        currentVolume = Math.min(currentVolume + 5, 100);
-        receiver.setVolume(currentVolume);
-      },
-    },
-    {
-      title: "Volume -",
-      command: () => {
-        currentVolume = Math.max(currentVolume - 5, 0);
-        receiver.setVolume(currentVolume);
-      },
-    },
-  ];
-
-  const handleAction = async (command: () => void) => {
     try {
-      // await receiver.connect();
-      // console.log("=> connecté");
-      await command();
-
+      await receiver.connect();
+      const [powerOn, sourceCode] = await Promise.all([receiver.isPowerOn(), receiver.getCurrentSourceCode()]);
+      setIsPowerOn(powerOn);
+      setCurrentSourceCode(sourceCode);
+    } catch {
       showToast({
-        title: "Commande envoyée",
-        style: Toast.Style.Success,
-      });
-
-      // setTimeout(() => receiver.disconnect(), 5000);
-    } catch (error) {
-      console.error("Erreur:", error);
-      showToast({
-        title: "Erreur",
-        message: String(error),
+        title: "Impossible de joindre l'ampli",
         style: Toast.Style.Failure,
       });
+    } finally {
+      receiver.disconnect();
     }
+
+    setScenes(await getScenes());
+    setIsLoading(false);
+  }, []);
+
+  useEffect(() => {
+    loadState();
+  }, [loadState]);
+
+  const runAction = async (title: string, action: (receiver: OnkyoEiscp) => void) => {
+    await withOnkyo(action, { successTitle: title });
   };
-  console.log("=> yolo");
+
+  const activeSource = ONKYO_SOURCES.find((source) => source.command.slice(3) === currentSourceCode);
 
   return (
-    <>
-      <Grid>
-        {commands.map((item, index) => (
-          <Grid.Item
-            key={index}
-            title={item.title}
-            subtitle={item.title.includes("Volume") ? `Volume actuel: ${currentVolume}%` : ""}
-            content={item.title}
+    <List
+      isLoading={isLoading}
+      searchBarPlaceholder="Rechercher une action…"
+      navigationTitle={isPowerOn === null ? "Onkyo Remote" : isPowerOn ? "Onkyo — Allumé" : "Onkyo — Éteint"}
+    >
+      <List.Section title="Alimentation">
+        <List.Item
+          title="Allumer"
+          icon={Icon.Power}
+          actions={
+            <ActionPanel>
+              <Action title="Allumer" onAction={() => runAction("Ampli allumé", (r) => r.powerOn())} />
+            </ActionPanel>
+          }
+        />
+        <List.Item
+          title="Éteindre"
+          icon={Icon.Switch}
+          actions={
+            <ActionPanel>
+              <Action title="Éteindre" onAction={() => runAction("Ampli éteint", (r) => r.powerOff())} />
+            </ActionPanel>
+          }
+        />
+      </List.Section>
+
+      <List.Section title="Volume">
+        <List.Item
+          title="Volume +"
+          icon={Icon.Plus}
+          actions={
+            <ActionPanel>
+              <Action title="Volume +" onAction={() => runAction("Volume augmenté", (r) => r.adjustVolume(1))} />
+            </ActionPanel>
+          }
+        />
+        <List.Item
+          title="Volume −"
+          icon={Icon.Minus}
+          actions={
+            <ActionPanel>
+              <Action title="Volume −" onAction={() => runAction("Volume diminué", (r) => r.adjustVolume(-1))} />
+            </ActionPanel>
+          }
+        />
+        <List.Item
+          title="Couper le son"
+          icon={Icon.SpeakerOff}
+          actions={
+            <ActionPanel>
+              <Action title="Mute" onAction={() => runAction("Son coupé", (r) => r.mute())} />
+            </ActionPanel>
+          }
+        />
+        <List.Item
+          title="Remettre le son"
+          icon={Icon.SpeakerHigh}
+          actions={
+            <ActionPanel>
+              <Action title="Unmute" onAction={() => runAction("Son réactivé", (r) => r.unmute())} />
+            </ActionPanel>
+          }
+        />
+      </List.Section>
+
+      <List.Section
+        title="Sources"
+        subtitle={
+          activeSource
+            ? `Actif : ${activeSource.title}`
+            : currentSourceCode
+              ? `Code : SLI${currentSourceCode}`
+              : undefined
+        }
+      >
+        {ONKYO_SOURCES.map((source) => {
+          const sourceCode = source.command.slice(3);
+          const isActive = currentSourceCode === sourceCode;
+
+          return (
+            <List.Item
+              key={source.id}
+              title={source.title}
+              icon={isActive ? Icon.CheckCircle : Icon.Circle}
+              accessories={isActive ? [{ text: "Actif" }] : undefined}
+              actions={
+                <ActionPanel>
+                  <Action
+                    title="Sélectionner"
+                    onAction={() =>
+                      runAction(`Source : ${source.title}`, (receiver) => {
+                        receiver.setSource(source.command);
+                        setCurrentSourceCode(sourceCode);
+                      })
+                    }
+                  />
+                </ActionPanel>
+              }
+            />
+          );
+        })}
+      </List.Section>
+
+      <List.Section title="Scènes">
+        {scenes.map((scene) => (
+          <List.Item
+            key={scene.id}
+            title={scene.name}
+            subtitle={describeScene(scene)}
+            icon={Icon.Layers}
             actions={
               <ActionPanel>
-                <Action title={item.title} onAction={() => handleAction(item.command)} />
+                <Action title="Activer La Scène" icon={Icon.Play} onAction={() => executeScene(scene)} />
               </ActionPanel>
             }
           />
         ))}
-      </Grid>
-    </>
+      </List.Section>
+    </List>
   );
 }

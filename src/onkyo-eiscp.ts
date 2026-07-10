@@ -2,6 +2,7 @@ import net from "net";
 import { OnkyoCommands } from "./onkyo-commands";
 
 const EISCP_PORT = 60128;
+const RESPONSE_TIMEOUT_MS = 3000;
 
 type OnkyoResponse = {
   command: string;
@@ -21,39 +22,32 @@ class OnkyoEiscp {
 
   async connect(): Promise<void> {
     return new Promise((resolve, reject) => {
-      this.client.connect(this.port, this.host, () => {
-        console.log("✅ Connected to Onkyo receiver");
-        resolve();
-      });
-
-      this.client.on("data", (data) => {
-        const response = this.parseResponse(data);
-        console.log("📥 Parsed response:", response);
-      });
-
-      this.client.on("error", (err) => {
-        console.error("❌ Connection error:", err);
+      const onError = (err: Error) => {
+        cleanup();
         reject(err);
-      });
+      };
 
-      this.client.on("close", () => {
-        console.log("🔌 Connection closed");
+      const cleanup = () => {
+        this.client.off("error", onError);
+      };
+
+      this.client.once("error", onError);
+      this.client.connect(this.port, this.host, () => {
+        cleanup();
+        resolve();
       });
     });
   }
 
   sendCommand(command: string): void {
-    const message = this.buildEiscpMessage(command);
-    this.client.write(message);
-    console.log(`📤 Command sent: ${command}`);
+    this.client.write(this.buildEiscpMessage(command));
   }
 
   disconnect(): void {
-    this.client.end();
-    console.log("🔌 Disconnected from Onkyo receiver");
+    this.client.destroy();
   }
 
-  private buildEiscpMessage(command: string): Buffer {
+  private buildEiscpMessage(command: string): Uint8Array {
     const cmd = `!1${command}\r`;
     const cmdBuffer = Buffer.from(cmd, "ascii");
 
@@ -61,53 +55,73 @@ class OnkyoEiscp {
       0x49,
       0x53,
       0x43,
-      0x50, // "ISCP"
+      0x50,
       0x00,
       0x00,
       0x00,
-      0x10, // Header size: 16 bytes
+      0x10,
       0x00,
       0x00,
       0x00,
-      cmdBuffer.length, // Data size: length of the command
+      cmdBuffer.length,
       0x01,
       0x00,
       0x00,
-      0x00, // Version and reserved bytes
+      0x00,
     ]);
 
-    return Buffer.concat([eiscpHeader, cmdBuffer]);
+    return Uint8Array.from([...eiscpHeader, ...cmdBuffer]);
   }
 
-  isConnected(): boolean {
-    console.log("=> this.client.readyState", this.client.readyState);
-    return this.client.readyState === "open";
-  }
-
-  getVolume(): Promise<OnkyoResponse | null> {
+  private waitForResponse(expectedCommand?: string): Promise<OnkyoResponse | null> {
     return new Promise((resolve, reject) => {
-      console.log("=> before sendCommand");
-      this.sendCommand(OnkyoCommands.VOLUME.QUERY);
-      console.log("=> after sendCommand");
+      const timeout = setTimeout(() => {
+        cleanup();
+        reject(new Error("Timeout en attente de réponse de l'ampli"));
+      }, RESPONSE_TIMEOUT_MS);
 
-      // this.client.on("data", (data) => {
-      //   const response = this.parseResponse(data);
-      //   console.log("📥 Parsed response:", response);
-      //   resolve(response);
-      // });
+      const onData = (data: Buffer) => {
+        const response = this.parseResponse(data);
+        if (!response) {
+          return;
+        }
+
+        if (!expectedCommand || response.command === expectedCommand) {
+          cleanup();
+          resolve(response);
+        }
+      };
+
+      const onError = (err: Error) => {
+        cleanup();
+        reject(err);
+      };
+
+      const cleanup = () => {
+        clearTimeout(timeout);
+        this.client.off("data", onData);
+        this.client.off("error", onError);
+      };
+
+      this.client.on("data", onData);
+      this.client.once("error", onError);
     });
   }
 
-  setVolume(level: number): void {
-    if (level < 0 || level > 100) {
-      throw new Error("❌ Volume level must be between 0 and 100.");
+  setVolume(level: number | string): void {
+    const numericLevel = typeof level === "string" ? Number.parseInt(level, 10) : level;
+
+    if (Number.isNaN(numericLevel) || numericLevel < 0 || numericLevel > 100) {
+      throw new Error("Le volume doit être entre 0 et 100.");
     }
 
-    const scaledLevel = Math.round((level / 100) * 0x64);
+    const scaledLevel = Math.round((numericLevel / 100) * 0x64);
     const hexVolume = scaledLevel.toString(16).toUpperCase().padStart(2, "0");
-
     this.sendCommand(OnkyoCommands.VOLUME.SET(hexVolume));
-    console.log(`🔊 Setting volume to ${level} (hex: ${hexVolume})`);
+  }
+
+  adjustVolume(delta: number): void {
+    this.sendCommand(delta >= 0 ? OnkyoCommands.VOLUME.UP : OnkyoCommands.VOLUME.DOWN);
   }
 
   powerOn(): void {
@@ -126,46 +140,34 @@ class OnkyoEiscp {
     this.sendCommand(OnkyoCommands.AUDIO.MUTE_OFF);
   }
 
-  isPowerOn(): Promise<boolean> {
-    return new Promise((resolve, reject) => {
-      this.sendCommand(OnkyoCommands.POWER.QUERY);
-      this.client.on("data", (data) => {
-        const response = this.parseResponse(data);
-        console.log("📥 Parseddd response:", response?.value);
-        if (response?.value.includes(OnkyoCommands.POWER.ON)) {
-          resolve(true);
-        } else {
-          resolve(false);
-        }
-      });
-    });
+  async isPowerOn(): Promise<boolean> {
+    this.sendCommand(OnkyoCommands.POWER.QUERY);
+    const response = await this.waitForResponse("PWR");
+    return response?.value.includes(OnkyoCommands.POWER.ON) ?? false;
   }
 
-  setSource(source: (typeof OnkyoCommands.SOURCE)[keyof typeof OnkyoCommands.SOURCE]): void {
-    this.sendCommand(OnkyoCommands.SOURCE[source]);
+  setSource(sourceCommand: string): void {
+    if (!sourceCommand.startsWith("SLI")) {
+      throw new Error(`Commande source invalide: ${sourceCommand}`);
+    }
+
+    this.sendCommand(sourceCommand);
   }
 
-  getSources(): Promise<OnkyoResponse[]> {
-    return new Promise((resolve, reject) => {
-      this.sendCommand(OnkyoCommands.SOURCE.QUERY);
-      this.client.on("data", (data) => {
-        const response = this.parseResponse(data);
-        console.log("=> -----------sourrce -------------");
-        console.log("📥 Parseddd response:", response?.value);
-        resolve(response?.value);
-      });
-    });
+  async getCurrentSourceCode(): Promise<string | null> {
+    this.sendCommand(OnkyoCommands.SOURCE.QUERY);
+    const response = await this.waitForResponse("SLI");
+    return response?.value ?? null;
   }
 
   private parseResponse(data: Buffer): OnkyoResponse | null {
     try {
-      const response = data.toString("ascii").slice(16).trim(); // Skip eISCP header
-      const command = response.slice(0, 3); // Extract the command (e.g., "PWR", "MVL")
-      const value = response.slice(3); // Extract the value (e.g., "01", "UP")
+      const response = data.toString("ascii").slice(16).trim();
+      const command = response.slice(0, 3);
+      const value = response.slice(3);
 
       return { command, value };
-    } catch (err) {
-      console.error("❌ Failed to parse response:", err);
+    } catch {
       return null;
     }
   }
